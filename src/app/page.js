@@ -1,6 +1,8 @@
+"use client";
 import Link from "next/link";
 import Layout from "../../components/layout/Layout";
 import MeetupList from "../../components/meetups/MeetupList";
+import { useEffect, useState } from "react";
 
 const Dummy_MEETUPS = [
   {
@@ -19,14 +21,16 @@ const Dummy_MEETUPS = [
   }
 ]
 
+
 export default function Home() {
+  const [loadeMeetups, setLoadMeetups] = useState([])
+  useEffect(()=>{
+
+    setLoadMeetups(Dummy_MEETUPS)
+  },[])
   return (
-    // <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    //   <h1>wellcome to next wold</h1>
-    //   <Link href="/about">check the about section</Link>
-    // </main>
     <>
-    <Layout><MeetupList meetups={Dummy_MEETUPS}/></Layout>
+    <Layout><MeetupList meetups={loadeMeetups}/></Layout>
     </>
   );
 }
